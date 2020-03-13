@@ -24,7 +24,7 @@
     <!-- CORE SCRIPTS-->
     <script src="{{ asset ('js/app.min.js') }}" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
 @yield('js')
 </body>
 
