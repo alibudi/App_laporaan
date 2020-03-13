@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\gaji;
+use App\anggaran;
 use Illuminate\Http\Request;
 
-class GajiController extends Controller
+class AnggaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $data['gajis'] = gaji::all();
-        return view('gaji.index')->with($data);
+        $data['anggarans'] = anggaran::all();
+        return view('pengajuan.index')->with($data);
     }
 
     /**
@@ -25,7 +25,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        return view('gaji.create');
+        return view('pengajuan.create');
     }
 
     /**
@@ -42,10 +42,10 @@ class GajiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\anggaran  $anggaran
      * @return \Illuminate\Http\Response
      */
-    public function show(gaji $gaji)
+    public function show(anggaran $anggaran)
     {
         //
     }
@@ -53,10 +53,10 @@ class GajiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\anggaran  $anggaran
      * @return \Illuminate\Http\Response
      */
-    public function edit(gaji $gaji)
+    public function edit(anggaran $anggaran)
     {
         //
     }
@@ -65,10 +65,10 @@ class GajiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\gaji  $gaji
+     * @param  \App\anggaran  $anggaran
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gaji $gaji)
+    public function update(Request $request, anggaran $anggaran)
     {
         //
     }
@@ -76,10 +76,10 @@ class GajiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\anggaran  $anggaran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gaji $gaji)
+    public function destroy(anggaran $anggaran)
     {
         //
     }

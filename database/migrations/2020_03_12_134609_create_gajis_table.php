@@ -15,6 +15,13 @@ class CreateGajisTable extends Migration
     {
         Schema::create('gajis', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nik', 30);
+            $table->string('nama', 50);
+            $table->string('alamat', 100);
+            $table->string('gaji', 30);
+            $table->string('insentif', 30);
+            $table->string('bonus', 30);
+            $table->string('total', 30);
             $table->timestamps();
         });
     }

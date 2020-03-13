@@ -15,7 +15,7 @@
             </li>
             <li class="heading">FEATURES</li>
           
-            <li id="menu-profil">
+            <li id="menu-pemesanan">
                 <a href="{{ url('pemesanan') }}"><i class="sidebar-item-icon fa fa-user"></i>
                     <span class="nav-label">Pemesanan Barang</span>
                 </a>
@@ -35,19 +35,34 @@
                     <span class="nav-label">Gaji</span></a>
             </li>
             <li id="menu-berita">
-                <a href="{{ url('admin/berita') }}"><i class="sidebar-item-icon fa fa-edit"></i>
-                    <span class="nav-label">Kelola Berita</span></a>
+                <a href="{{ url('event') }}"><i class="sidebar-item-icon fa fa-edit"></i>
+                    <span class="nav-label">Biaya Event</span></a>
             </li>
             <li id="menu-galeri">
-                <a href="{{ url('admin/galeri') }}"><i class="sidebar-item-icon fa fa-table"></i>
-                    <span class="nav-label">Kelola Galeri</span></a>
+                <a href="{{ url('anggaran') }}"><i class="sidebar-item-icon fa fa-table"></i>
+                    <span class="nav-label">Pengajuan Biaya</span></a>
             </li>
             <li id="menu-galeri">
-                <a href="{{ url('admin/log') }}"><i class="sidebar-item-icon fa fa-table"></i>
-                    <span class="nav-label">Log Aktivitas</span></a>
-            </li>
+                <a href="{{ url('kelola') }}"><i class="sidebar-item-icon fa fa-table"></i>
+                    <span class="nav-label">Kelola Users</span></a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" 
+                    onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><i class="sidebar-item-icon fa fa-power-off"></i>
+                        <span class="nav-label">Logout</span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                    <!-- <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a><i class="sidebar-item-icon fa fa-power-off"></i> -->
 
-          
+                                
+                </li>
         </ul>
     </div>
 </nav>

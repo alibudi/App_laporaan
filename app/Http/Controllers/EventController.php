@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\gaji;
+use App\event;
 use Illuminate\Http\Request;
 
-class GajiController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $data['gajis'] = gaji::all();
-        return view('gaji.index')->with($data);
+        $data['events'] = event::all();
+        return view('event.index')->with($data);
     }
 
     /**
@@ -25,7 +25,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        return view('gaji.create');
+        return view('event.create');
     }
 
     /**
@@ -42,10 +42,10 @@ class GajiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(gaji $gaji)
+    public function show(event $event)
     {
         //
     }
@@ -53,10 +53,10 @@ class GajiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(gaji $gaji)
+    public function edit(event $event)
     {
         //
     }
@@ -65,10 +65,10 @@ class GajiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\gaji  $gaji
+     * @param  \App\event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gaji $gaji)
+    public function update(Request $request, event $event)
     {
         //
     }
@@ -76,10 +76,10 @@ class GajiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\gaji  $gaji
+     * @param  \App\event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gaji $gaji)
+    public function destroy(event $event)
     {
         //
     }

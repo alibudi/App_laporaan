@@ -24,3 +24,5 @@ Route::resource('/harian', 'HarianController');
 Route::resource('/bulanan', 'BulananController');
 Route::resource('/gaji', 'GajiController');
 Route::resource('/pemesanan', 'PemesananController');
+Route::resource('/event', 'EventController');
+Route::resource('/anggaran', 'AnggaranController');

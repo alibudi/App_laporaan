@@ -6,7 +6,7 @@
 <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title">Pemesanan Barang</h1>
+                <h1 class="page-title">Data Pengajuan Anggaran</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href=""><i class="la la-home font-20"></i></a>
@@ -16,14 +16,14 @@
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Data Pemesanan Barang</div>
+                        <div class="ibox-title">Data Pengajuan Anggaran</div>
                     </div>
-                    <a style="margin:10px;" href="{{ route('pemesanan.create') }}" class="btn btn-outline-success">Tambah data</a>
+                    <a style="margin:10px;" href="{{ route('anggaran.create') }}" class="btn btn-outline-success">Tambah data</a>
                     <div class="ibox-body">
                     @php
                         $no = 1;
                     @endphp
-                        <table class="table table-striped table-bordered table-hover" id="{{ empty($pemesanans) ? '':'table-dt' }}" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="{{ empty($anggarans) ? '':'table-dt' }}" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -36,8 +36,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (!empty($pemesanans))
-                                @foreach ($pemesanans as $hari)
+                            @if (!empty($anggarans))
+                                @foreach ($anggarans as $hari)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $hari->nomor }}</td>
@@ -76,14 +76,14 @@
 
     @section('js')
     <script>
-        $("#menu-pemesanan").addClass("active");
+        $("#menu-anggaran").addClass("active");
         $(function(){
             $("#table-dt").dataTable();
         });
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#harians-"+id).submit();
+                $("#anggarans-"+id).submit();
             }
         }
     </script>
