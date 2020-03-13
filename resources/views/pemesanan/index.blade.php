@@ -13,7 +13,51 @@
                     </li>
                 </ol>
             </div>
+
             <div class="page-content fade-in-up">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="ibox">
+                          <div class="ibox-head">
+                              <div class="ibox-title">Basic form</div>
+                              <div class="ibox-tools">
+                                  <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                                  <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                      <a class="dropdown-item">option 1</a>
+                                      <a class="dropdown-item">option 2</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="ibox-body">
+                              <form>
+                                  <div class="row">
+                                      <div class="col-sm-6 form-group">
+                                          <label>No Pesanan</label>
+                                          <input class="form-control" type="text" placeholder="First Name">
+                                      </div>
+                                      <div class="col-sm-6 form-group">
+                                          <label>Kepada</label>
+                                          <input class="form-control" type="text" placeholder="First Name">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Alamat</label>
+                                      <input class="form-control" type="text" placeholder="Email address">
+                                  </div>
+                                
+                                  <div class="form-group">
+                                      <button class="btn btn-default" type="submit">Submit</button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+            <div class="page-content fade-in-up">
+              
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Operasional Harian</div>
