@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
+use App\produk;
 use App\pemesanan;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,10 @@ class PemesananController extends Controller
      */
     public function index()
     {
+      
         $data['pemesanans'] = pemesanan::all();
-        return view('pemesanan.index');
+        // $data= pemesanan::groupBy('nomor')->get();
+        return view('pemesanan.index')->with($data);
     }
 
     /**
@@ -25,7 +28,25 @@ class PemesananController extends Controller
      */
     public function create()
     {
-        return view('pemesanan.create');
+        
+        $nota = time(). str_random(10);   
+        if(Session::has('nota')){
+            $nomor1 = Session::get('nota');
+            $nomor = $nomor1[0];
+            $data2 = pemesanan::where('nomor',$nomor)->get();
+        }
+        else{
+            $nomor = $nota;
+            $data2 = pemesanan::where('nomor',$nomor)->get();
+        }
+
+        $produks = produk::all();
+    
+        $alamat = 'jakarta';
+        $kepada = 'orang';
+        $data = [$nota,$alamat,$kepada];
+        return view('pemesanan.create', compact('data','produks','data2'));
+        // Session::forget('nota');
     }
 
     /**
@@ -36,7 +57,36 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
+        $produks = produk::all();
+      if(Session::has('nota')){
+          $nomor1 = Session::get('nota');
+          $nomor = $nomor1[0];
+      }
+      else{
+          $nomor = $request->nomor;
+          Session::push('nota',$nomor);
+      }
+      $alamat = 'jakarta';
+      $kepada = 'orang';
+      $data = [$nomor,$alamat,$kepada];
+     
+
+        $data3 = [
+            'nomor'=>$nomor,
+            'alamat'=>$request->alamat,
+            'produk'=>$request->nama,
+            'jumlah'=>$request->jumlah,
+            'harga'=>$request->harga
+        ];
+
+            $save = pemesanan::create($data3);
+
+            $data2 = pemesanan::where('nomor',$nomor)->get();
+            if($save){
+                return view('pemesanan.create',compact('data2','data','produks'));
+            }
+    // return $request;
     }
 
     /**
@@ -45,9 +95,10 @@ class PemesananController extends Controller
      * @param  \App\pemesanan  $pemesanan
      * @return \Illuminate\Http\Response
      */
-    public function show(pemesanan $pemesanan)
+    public function show($id)
     {
-        //
+        pemesanan::destroy($id);
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +130,9 @@ class PemesananController extends Controller
      * @param  \App\pemesanan  $pemesanan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pemesanan $pemesanan)
+    public function destroy($id)
     {
-        //
+       
+        
     }
 }

@@ -29,9 +29,8 @@
                                     <th>No</th>
                                     <th>Kode Nomor</th>
                                     <th>Alamat</th>
-                                    <th>Keterangan</th>
-                                    <th>tanggal</th>
-                                    <th>Keterangan</th>
+                                    <th>Produk</th>
+                                    <th>Hagra</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -42,8 +41,8 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $hari->nomor }}</td>
                                     <td>{{ $hari->alamat }}</td>
-                                    <td>{{ $hari->tanggal }}</td>
-                                    <td>{{ $hari->keterangan }}</td>
+                                    <td>{{ $hari->produk }}</td>
+                                    <td>{{ $hari->harga }}</td>
                                     <td>
                                 <a href="{{route('harian.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>

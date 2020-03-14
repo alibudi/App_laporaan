@@ -153,6 +153,6 @@ class HarianController extends Controller
      */
     public function destroy(harian $harian)
     {
-        //
+        
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\saldo;
+use Session;
 use Illuminate\Http\Request;
 
 class SaldoController extends Controller
@@ -14,7 +15,8 @@ class SaldoController extends Controller
      */
     public function index()
     {
-        //
+        Session::forget('nota');
+        return redirect()->back();
     }
 
     /**
@@ -55,9 +57,9 @@ class SaldoController extends Controller
      * @param  \App\saldo  $saldo
      * @return \Illuminate\Http\Response
      */
-    public function edit(saldo $saldo)
+    public function edit($id)
     {
-        //
+       
     }
 
     /**

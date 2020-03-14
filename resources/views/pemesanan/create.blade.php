@@ -30,25 +30,36 @@
                               </div>
                           </div>
                           <div class="ibox-body">
-                              <form>
+                              @php
+                                  if(Session::has('nota')){
+                                      $nomor1 = Session::get('nota');
+                                      $nomor = $nomor1[0];
+                                  }
+                                  else{
+                                      $nomor = $data[0];
+                                  }
+                              @endphp
+                              <form  action="{{ route ('pemesanan.store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
                                   <div class="row">
                                       <div class="col-sm-6 form-group">
                                           <label>No Pesanan</label>
-                                          <input class="form-control" type="text" placeholder="Nomor Pesanan">
+                                      <input class="form-control" type="text" placeholder="Nomor Pesanan" name="nomor" value="{{ $nomor }}" >
                                       </div>
                                       <div class="col-sm-6 form-group">
                                           <label>Kepada</label>
-                                          <input class="form-control" type="text" placeholder="Kepada">
+                                          <input class="form-control" type="text" name="kepada" value="{{ $data[2]}}"  placeholder="Kepada">
                                       </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label>Alamat</label>
-                                        <input class="form-control" type="text" placeholder="Alamat">
+                                    <input class="form-control" type="text" name="alamat" value="{{ $data[1]}}"  placeholder="Alamat">
                                     </div>
                                     <div class="col-sm-6 form-group">                                     
                                           <label>Catatan</label>
-                                          <textarea class="form-control" rows="3"></textarea>
+                                          <input class="form-control" name="keterangan" >
+                                        {{-- </textarea> --}}
                             
                                     </div>
                                 </div>
@@ -67,52 +78,117 @@
                                         <tbody>
                                           <tr>
                                             <td>
-                                              <select class="form-control" id="" name="">
+                                              <select class="form-control" id="nama" onclick="isiharga()" name="nama">
                                                 <option value="0">
                                                   Please select one
                                                 </option>
-                                                <option value="12"> Besi </option>       
-                                                <option value="KAT1"> Kipas Angin <option>
-                                                <option value="LAMP"> Lampu</option>
-                                                <option value="TV"> TV </option>
+                                                @foreach ($produks as $item)
+                                                <option value="{{$item->nama}}">{{$item->nama  }}</option>
+                                                @endforeach
+                                              
                                             </select>
                                             </td>
                                             <td>
                                               <input type="number" id="" class="form-control" name="jumlah" min="1" value="1"/>
                                             </td>
                                             <td>
-                                              <input type="text" class="form-control form-price-format discount-trx" data-attr="0" id="" name="" placeholder="" required/>
+                                              <input type="text" class="form-control" data-attr="0" id="harga" name="harga" placeholder="" required/>
                                             </td>
                   
-                  
                                             <td>
-                                              <a href="#" class="btn btn-success btn-rounded" id="">Input Barang</a>
+                                                <button class="btn btn-outline-success" type="submit">Submit</button>
                                             </td>
                                           </tr>
                                                                 </tbody>
-                                        <tfoot>
-                                          <tr>
-                                            <th colspan="3">Total Pembelian</th>
-                                            <th colspan="2" id="total-pembelian"></th>
-                                          </tr>
-                                        </tfoot>
+                                      
                                       </table>
                                     </div>
                                   </div>
-                                  <div class="form-group">
-                                      <button class="btn btn-outline-success" type="submit">Submit</button>
-                                  </div>
                               </form>
+
+
                           </div>
                       </div>
                   </div>
               </div>
+   <div class="page-content fade-in-up">
+                <div class="ibox">
+                    <div class="ibox-head">
+                        <div class="ibox-title">Data Pemesanan Barang</div>
+                    </div>
+                    <div class="ibox-body">
+                    @php
+                        $no = 1;
+                    @endphp
+                        <table class="table table-striped table-bordered table-hover" id="{{ empty($data2) ? '':'table-dt' }}" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Alamat</th>
 
+                                    <th>Produk</th>
+                                    <th>Jumlah</th>
+                                    <th>Harga</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php($total=[])
+                            @if (!empty($data2))
+                                @foreach ($data2 as $hari)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $hari->alamat }}</td>
+                                    @php ($qty = $hari->jumlah)
+                                    <td>{{ $hari->produk }}</td>
+                                    <td>{{ $hari->jumlah }}</td>
+                                    <td>{{ $hari->harga }}</td>
+                                    <td>{{$qty*$hari->harga}}</td>
+                                    @php(array_push($total,$qty*$hari->harga))
+                                    <td>
+                                <a href="{{route('harian.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
+                                    <i class="fa fa-pencil font-medium-3 mr-2"></i>
+                                </a>
+                                <a href="{{ url('pemesanan', [$hari->id]) }}" onclick="return confirm('hapus data?')" class="danger p-0" data-original-title="" title="">
+                                    <i class="fa fa-trash font-medium-3 mr-2"></i>
+                                </a>
+
+                                {{-- <form id="harian-{{ $hari->id }}" action="{{ route('pemesanan.destroy', $hari->id) }}" method="post" style="display:none;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id-{{ $hari->id }}" value="">
+                                    <input type="submit" value="OK">
+                                </form> --}}
+                                      </tr>
+                                      
+                                @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="8" class="text-center"><i>Tidak Ada Data</i></td>
+                                    </tr>
+                                @endif
+                                <tr>
+                                    <td>Total</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                <td>{{array_sum($total)}}</td>
+                                <td><a href="{{ url('saldo', []) }}" class="btn btn-outline-success" type="submit">Selesai</a></td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <!-- END PAGE CONTENT-->
            
     @endsection
 
     @section('js')
+
     <script>
         $("#menu-pemesanan").addClass("active");
         $(function(){
@@ -121,8 +197,9 @@
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#harians-"+id).submit();
+                $("#pemesanan-"+id).submit();
             }
         }
+    
     </script>
 @endsection
