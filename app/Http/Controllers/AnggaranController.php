@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\anggaran;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class AnggaranController extends Controller
 {
     /**
@@ -36,7 +36,25 @@ class AnggaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'keterangan'        => 'required',
+            'nominal'           => 'required',
+        ]);
+
+        $data = [
+            'keterangan'         => $request->keterangan,
+            'nominal'            => $request->nominal,
+        ];
+
+        $anggarans = anggaran::create($data);
+        if ($anggarans) {
+            Alert::success('Tambah Berhasil', 'Sukses Tambah Data');
+            // return redirect()->back();
+            return redirect()->route('anggaran.index');
+        }
+
+        Alert::error('Tambah Gagal', 'Sukses Tambah Data');
+        return redirect()->route('anggaran.create');
     }
 
     /**
@@ -79,8 +97,15 @@ class AnggaranController extends Controller
      * @param  \App\anggaran  $anggaran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(anggaran $anggaran)
+    public function destroy($id)
     {
-        //
+        $anggarans = anggaran::findOrFail($id);
+        if ($anggarans->delete()) {
+            Alert::success('Hapus Sukses', 'Sukses Hapus Data');
+            return redirect()->route('anggaran.index');
+        }
+
+        Alert::success('Gagal Hapus', 'Gagal Hapus Data');
+        return redirect()->route('anggaran.index');
     }
 }

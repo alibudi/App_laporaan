@@ -77,7 +77,8 @@ class PemesananController extends Controller
             'alamat'=>$request->alamat,
             'produk'=>$request->nama,
             'jumlah'=>$request->jumlah,
-            'harga'=>$request->harga
+            'harga'=>$request->harga,
+            'keterangan'=>$request->keterangan
         ];
 
             $save = pemesanan::create($data3);

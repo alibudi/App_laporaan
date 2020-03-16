@@ -18,7 +18,12 @@
                     <div class="ibox-head">
                         <div class="ibox-title">Data Operasional Harian</div>
                     </div>
-                    <a style="margin:10px;" href="{{ route('harian.create') }}" class="btn btn-outline-success">Tambah data</a>
+                    <a style="margin:10px;" href="{{ route('harian.create') }}" class="btn btn-outline-success">Pengeluaran</a>
+                    <a style="" href="{{ route('harian.create') }}" class="btn btn-outline-success">Tambah Saldo</a>
+                    @foreach ($saldo as $item)
+                    <a style="margin:10px;"  class="btn btn-outline-info">Rp.{{ number_format($item->saldo) }}</a>
+                @endforeach
+                 
                     <div class="ibox-body">
                     @php
                         $no = 1;
@@ -40,7 +45,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $hari->nama }}</td>
-                                    <td>{{ $hari->nilai }}</td>
+                                    <td>{{number_format($hari->nilai) }}</td>
                                     <td>{{ $hari->keterangan }}</td>
                                     <td> <img width="100px;" src="{{ url('images', $hari['nota']) }}" /></td>
                                     <td>

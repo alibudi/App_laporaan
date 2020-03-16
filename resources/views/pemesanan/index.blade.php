@@ -30,7 +30,8 @@
                                     <th>Kode Nomor</th>
                                     <th>Alamat</th>
                                     <th>Produk</th>
-                                    <th>Hagra</th>
+                                    <th>Harga</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,20 +44,22 @@
                                     <td>{{ $hari->alamat }}</td>
                                     <td>{{ $hari->produk }}</td>
                                     <td>{{ $hari->harga }}</td>
+                                    <td>{{ $hari->status}}</td>
+
                                     <td>
                                 <a href="{{route('harian.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
-                                <a href="javascript:void(0)" onclick="hapusData({{ $hari->id }})" class="danger p-0" data-original-title="" title="">
+                                <a href="{{ url('pemesanan', [$hari->id]) }}" onclick="return confirm('hapus data?')" class="danger p-0" data-original-title="" title="">
                                     <i class="fa fa-trash font-medium-3 mr-2"></i>
                                 </a>
 
-                                <form id="harian-{{ $hari->id }}" action="{{ route('harian.destroy', $hari->id) }}" method="post" style="display:none;">
+                                {{-- <form id="harian-{{ $hari->id }}" action="{{ route('harian.destroy', $hari->id) }}" method="post" style="display:none;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id-{{ $hari->id }}" value="">
                                     <input type="submit" value="OK">
-                                </form>
+                                </form> --}}
                                       </tr>
                                 @endforeach
                                 @else

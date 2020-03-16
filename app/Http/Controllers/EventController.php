@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\event;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 class EventController extends Controller
 {
     /**
@@ -36,7 +37,34 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama'              => 'required',
+            'tgl'               => 'required',
+            'nilai'             => 'required',
+            'keterangan'        => 'required',
+            'nota'              => 'required|image',
+        ]);
+
+        $uploadedFile = $request->file('nota');
+        $imgName = time() . str_random(22) . '.' . $uploadedFile->getClientOriginalExtension();
+        $uploadedFile->move(public_path('img/event'), $imgName);
+
+        $data = [
+            'nama'              => $request->nama,
+            'tgl'             => $request->tgl,
+            'nilai'           => $request->nilai,
+            'keterangan'          => $request->keterangan,
+            'nota'              => $imgName,
+        ];
+
+        $events = event::create($data);
+        if ($events) {
+            Alert::success('Tambah Berhasil', 'Sukses Tambah Data');
+            return redirect()->route('event.index');
+        }
+
+        Alert::error('Tambah Gagal', 'Sukses Tambah Data');
+        return redirect()->route('tani.create');
     }
 
     /**

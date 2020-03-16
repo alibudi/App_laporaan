@@ -34,11 +34,11 @@
                 <a href="{{ url('gaji') }}"><i class="sidebar-item-icon fa fa-money"></i>
                     <span class="nav-label">Gaji</span></a>
             </li>
-            <li id="menu-berita">
+            <li id="menu-event">
                 <a href="{{ url('event') }}"><i class="sidebar-item-icon fa fa-edit"></i>
                     <span class="nav-label">Biaya Event</span></a>
             </li>
-            <li id="menu-galeri">
+            <li id="menu-anggaran">
                 <a href="{{ url('anggaran') }}"><i class="sidebar-item-icon fa fa-table"></i>
                     <span class="nav-label">Pengajuan Biaya</span></a>
             </li>

@@ -27,35 +27,32 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Nomor</th>
-                                    <th>Alamat</th>
                                     <th>Keterangan</th>
-                                    <th>tanggal</th>
-                                    <th>Keterangan</th>
+                                    <th>Nominal</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @if (!empty($anggarans))
-                                @foreach ($anggarans as $hari)
+                                @foreach ($anggarans as $anggaran)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $hari->nomor }}</td>
-                                    <td>{{ $hari->alamat }}</td>
-                                    <td>{{ $hari->tanggal }}</td>
-                                    <td>{{ $hari->keterangan }}</td>
+                                    <td>{{ $anggaran->keterangan }}</td>
+                                    <td>{{ $anggaran->nominal }}</td>
+                                    <td>{{ $anggaran->status }}</td>
                                     <td>
-                                <a href="{{route('harian.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
+                                <a href="{{route('anggaran.edit', $anggaran->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
-                                <a href="javascript:void(0)" onclick="hapusData({{ $hari->id }})" class="danger p-0" data-original-title="" title="">
+                                <a href="javascript:void(0)" onclick="hapusData({{ $anggaran->id }})" class="danger p-0" data-original-title="" title="">
                                     <i class="fa fa-trash font-medium-3 mr-2"></i>
                                 </a>
 
-                                <form id="harian-{{ $hari->id }}" action="{{ route('harian.destroy', $hari->id) }}" method="post" style="display:none;">
+                                <form id="anggaran-{{ $anggaran->id }}" action="{{ route('anggaran.destroy', $anggaran->id) }}" method="post" style="display:none;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id-{{ $hari->id }}" value="">
+                                    <input type="hidden" name="id-{{ $anggaran->id }}" value="">
                                     <input type="submit" value="OK">
                                 </form>
                                       </tr>
@@ -83,7 +80,7 @@
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#anggarans-"+id).submit();
+                $("#anggaran-"+id).submit();
             }
         }
     </script>

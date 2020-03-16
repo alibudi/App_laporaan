@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\harian;
 use App\saldo;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class HarianController extends Controller
 {
     /**
@@ -15,6 +15,7 @@ class HarianController extends Controller
      */
     public function index()
     {
+        $data['saldo'] = saldo::all();
         $data['harians'] = harian::all();
         return view('harian.index')->with($data);
     }
@@ -60,7 +61,8 @@ class HarianController extends Controller
         {
             // saldo::create($datasaldo);
             saldo::find(1)->update($datasaldo);
-            return redirect()->back()->withSuccess('sukses tambah data');
+            Alert::success('Tambah Berhasil', 'Sukses Tambah Data');
+            return redirect()->route('harian.index');
         }
     }
 
