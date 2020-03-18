@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Anggaran;
+use App\Pemesanan;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $data['po_count'] = Pemesanan::count();
+        $data['anggaran_count'] = Anggaran::count();
+        $data['user_count'] = User::count();
+        return view('admin.index')->with($data);
     }
 }

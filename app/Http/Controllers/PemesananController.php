@@ -5,7 +5,7 @@ use Session;
 use App\produk;
 use App\pemesanan;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class PemesananController extends Controller
 {
     /**
@@ -133,7 +133,14 @@ class PemesananController extends Controller
      */
     public function destroy($id)
     {
-       
+        $pemesanans = pemesanan::findOrFail($id);
+        if ($pemesanans->delete()) {
+            Alert::success('Hapus Sukses', 'Sukses Hapus Data');
+            return redirect()->route('pemesanan.index');
+        }
+
+        Alert::success('Gagal Hapus', 'Gagal Hapus Data');
+        return redirect()->route('pemesanan.index');
         
     }
 }

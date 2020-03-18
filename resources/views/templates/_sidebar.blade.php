@@ -16,52 +16,51 @@
             <li class="heading">FEATURES</li>
           
             <li id="menu-pemesanan">
-                <a href="{{ url('pemesanan') }}"><i class="sidebar-item-icon fa fa-user"></i>
+                <a href="{{ url('admin/pemesanan') }}"><i class="sidebar-item-icon fa fa-user"></i>
                     <span class="nav-label">Pemesanan Barang</span>
                 </a>
             </li>
-    
+            <li id="menu-produk">
+                <a href="{{ url('admin/produk') }}"><i class="sidebar-item-icon fa fa-file-text"></i>
+                    <span class="nav-label">Produk</span>
+                </a>
+            </li>
             <li id="menu-harian">
-                <a href="{{ url('harian') }}"><i class="sidebar-item-icon fa fa-file"></i>
+                <a href="{{ url('admin/harian') }}"><i class="sidebar-item-icon fa fa-file"></i>
                     <span class="nav-label">Operasional Harian</span>
                 </a>
             </li>
-            <li id="menu-bulan">
-                <a href="{{ url('bulanan') }}"><i class="sidebar-item-icon fa fa-book"></i>
+            <li id="menu-bulanan">
+                <a href="{{ url('admin/bulanan') }}"><i class="sidebar-item-icon fa fa-book"></i>
                     <span class="nav-label">Operasional Bulan</span></a>
             </li>
             <li id="menu-gaji">
-                <a href="{{ url('gaji') }}"><i class="sidebar-item-icon fa fa-money"></i>
+                <a href="{{ url('admin/gaji') }}"><i class="sidebar-item-icon fa fa-money"></i>
                     <span class="nav-label">Gaji</span></a>
             </li>
+            {{-- <li id="menu-karyawan">
+                <a href="{{ url('admin/karyawan') }}"><i class="sidebar-item-icon fa fa-money"></i>
+                    <span class="nav-label">Kelola Karyawan</span></a>
+            </li> --}}
             <li id="menu-event">
-                <a href="{{ url('event') }}"><i class="sidebar-item-icon fa fa-edit"></i>
+                <a href="{{ url('admin/event') }}"><i class="sidebar-item-icon fa fa-edit"></i>
                     <span class="nav-label">Biaya Event</span></a>
             </li>
             <li id="menu-anggaran">
-                <a href="{{ url('anggaran') }}"><i class="sidebar-item-icon fa fa-table"></i>
+                <a href="{{ url('admin/anggaran') }}"><i class="sidebar-item-icon fa fa-table"></i>
                     <span class="nav-label">Pengajuan Biaya</span></a>
             </li>
             <li id="menu-galeri">
-                <a href="{{ url('kelola') }}"><i class="sidebar-item-icon fa fa-table"></i>
+                <a href="{{ url('admin/user') }}"><i class="sidebar-item-icon fa fa-users"></i>
                     <span class="nav-label">Kelola Users</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('logout') }}" 
-                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();"><i class="sidebar-item-icon fa fa-power-off"></i>
-                        <span class="nav-label">Logout</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                    <!-- <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a><i class="sidebar-item-icon fa fa-power-off"></i> -->
-
-                                
+                    <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="sidebar-item-icon fa fa-power-off"></i><span>Logout</span>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </a>        
                 </li>
         </ul>
     </div>

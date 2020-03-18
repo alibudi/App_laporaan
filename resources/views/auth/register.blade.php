@@ -19,11 +19,11 @@
 <body class="bg-silver-300">
     <div class="content">
         <div class="brand">
-        <img style="width:20%" src="{{ asset ('img/brebes.png')}}" alt="">
+        {{-- <img style="width:20%" src="{{ asset ('img/brebes.png')}}" alt=""> --}}
         </div>
         <form id="register-form" action="{{ route('register') }}" method="post">
         @csrf
-            <h2 class="login-title">Lapor IMB</h2>
+            <h4 class="login-title">PT. Indonesia Merdeka Belajar</h4>
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">

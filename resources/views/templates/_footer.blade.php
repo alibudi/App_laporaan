@@ -1,6 +1,6 @@
 <footer class="page-footer">
-    <div class="font-13">2020 © <b>HAK CIPTA</b> </div>
-    <a class="px-4" hre target="_blank">PT Indonesia Merdeka Belajar</a>
+    <div class="font-13">2020 © <b>HAK CIPTA</b> PT Indonesia Merdeka Belajar </div>
+    <a class="px-4" hre target="_blank">Version 1</a>
     <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
 </footer>
 </div>

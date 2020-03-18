@@ -25,7 +25,7 @@
         <form id="login-form" method="POST" action="{{ route('login') }}">
         @csrf
 
-            <h2 class="login-title">Lapor IMB</h2>
+        <h4 class="login-title">PT. Indonesia Merdeka Belajar</h4>
             <div class="form-group">
                 <div class="input-group-icon right">
                     <div class="input-icon"><i class="fa fa-envelope"></i></div>
@@ -61,10 +61,10 @@
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Login</button>
             </div>
- 
+{{--  
             <div class="text-center">Not a member?
                 <a class="color-blue" href="{{ route('register') }}">Create accaunt</a>
-            </div>
+            </div> --}}
         </form>
     </div>
     <!-- BEGIN PAGA BACKDROPS-->

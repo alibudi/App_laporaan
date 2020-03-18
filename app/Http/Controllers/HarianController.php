@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\harian;
+use App\Harian;
 use App\saldo;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,10 +13,14 @@ class HarianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data['saldo'] = saldo::all();
-        $data['harians'] = harian::all();
+        $data['harians'] = Harian::all();
         return view('harian.index')->with($data);
     }
 
@@ -51,7 +55,7 @@ class HarianController extends Controller
             'keterangan'=>$request->keterangan,
             'tgl'=>$request->tgl,
             'nota'=>$foto ];
-        $save = harian::create($data);
+        $save = Harian::create($data);
 
         $datasaldo = [
             'saldo'=>$total['saldo']-$request->nilai
@@ -85,7 +89,7 @@ class HarianController extends Controller
      */
     public function edit($id)
     {
-        $data = harian::find($id);
+        $data = Harian::find($id);
         return view('harian.edit',compact('data','id'));
     }
 
@@ -96,11 +100,11 @@ class HarianController extends Controller
      * @param  \App\harian  $harian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, harian $harian)
+    public function update(Request $request, $id)
     {
         $total = saldo::find(1);
         $saldoSekarang = $total['saldo'];
-        $nilaidulu =laporan::find($id);
+        $nilaidulu = Harian::find($id);
         $nilaidulu_ = $nilaidulu['nilai'];
         // $foto = $nilaidulu['nota'];
         if($request->has('nota')){
@@ -114,10 +118,10 @@ class HarianController extends Controller
         $data = [
             'nama'=>$request->nama,
             'nilai'=>$request->nilai,
-            'keterangan'=>$request->ket,
-            'tgl'=>$request->tanggal,
+            'keterangan'=>$request->keterangan,
+            'tgl'=>$request->tgl,
             'nota'=>$foto ];
-        $save = harian::find($id)->update($data);
+        $save = Harian::find($id)->update($data);
 
        
             if($nilaidulu_<$request->nilai){
@@ -143,7 +147,9 @@ class HarianController extends Controller
         {
             // saldo::create($datasaldo);
             saldo::find(1)->update($datasaldo);
-            return redirect()->back()->withSuccess('sukses tambah data');
+            // return redirect()->back()->withSuccess('sukses tambah data');
+            Alert::success('Tambah Berhasil', 'Sukses Tambah Data');
+            return redirect()->route('harian.index');
         }
     }
 
@@ -153,8 +159,15 @@ class HarianController extends Controller
      * @param  \App\harian  $harian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(harian $harian)
+    public function destroy($id)
     {
-        
+        $harians = Harian::findOrFail($id);
+        if ($harians->delete()) {
+            Alert::success('Hapus Sukses', 'Sukses Hapus Data');
+            return redirect()->route('harian.index');
+        }
+
+        Alert::success('Gagal Hapus', 'Gagal Hapus Data');
+        return redirect()->route('harian.index');
     }
 }

@@ -12,6 +12,10 @@ class BulananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data['saldo'] = saldo2::all();
@@ -26,7 +30,7 @@ class BulananController extends Controller
      */
     public function create()
     {
-        //
+        return view('bulanan.create');
     }
 
     /**
@@ -105,8 +109,15 @@ class BulananController extends Controller
      * @param  \App\bulanan  $bulanan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bulanan $bulanan)
+    public function destroy($id)
     {
-        //
+        $bulanans = bulanan::findOrFail($id);
+        if ($bulanans->delete()) {
+            Alert::success('Hapus Sukses', 'Sukses Hapus Data');
+            return redirect()->route('bulanan.index');
+        }
+
+        Alert::success('Gagal Hapus', 'Gagal Hapus Data');
+        return redirect()->route('bulanan.index');
     }
 }

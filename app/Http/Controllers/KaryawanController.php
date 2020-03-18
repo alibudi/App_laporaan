@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\saldo;
-use Session;
 use Illuminate\Http\Request;
-
-class SaldoController extends Controller
+use App\Karyawan;
+class KaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +17,8 @@ class SaldoController extends Controller
     }
     public function index()
     {
-        Session::forget('nota');
-        return redirect()->back();
+        $data['karyawans'] = Karyawan::all();
+        return view('karyawan.index')->with($data);
     }
 
     /**
@@ -47,10 +45,10 @@ class SaldoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\saldo  $saldo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(saldo $saldo)
+    public function show($id)
     {
         //
     }
@@ -58,22 +56,22 @@ class SaldoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\saldo  $saldo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-       
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\saldo  $saldo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, saldo $saldo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,10 +79,10 @@ class SaldoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\saldo  $saldo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(saldo $saldo)
+    public function destroy($id)
     {
         //
     }

@@ -19,6 +19,9 @@
                         <div class="ibox-title">Data Operasional Bulanan</div>
                     </div>
                     <a style="margin:10px;" href="{{ route('bulanan.create') }}" class="btn btn-outline-success">Tambah data</a>
+                    @foreach ($saldo as $item)
+                    <a style="margin:10px;"  class="btn btn-outline-info">Rp.{{ number_format($item->saldo) }}</a>
+                @endforeach
                     <div class="ibox-body">
                     @php
                         $no = 1;
@@ -82,7 +85,7 @@
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#harians-"+id).submit();
+                $("#bulanan-"+id).submit();
             }
         }
     </script>

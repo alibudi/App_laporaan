@@ -29,6 +29,7 @@
                                     <th>No</th>
                                     <th>Keterangan</th>
                                     <th>Nominal</th>
+                                    <th>Tanggal</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -40,6 +41,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $anggaran->keterangan }}</td>
                                     <td>{{ $anggaran->nominal }}</td>
+                                    <td>{{ $anggaran->created_at }}</td>
                                     <td>{{ $anggaran->status }}</td>
                                     <td>
                                 <a href="{{route('anggaran.edit', $anggaran->id)}}" class="success p-0" data-original-title="" title="">

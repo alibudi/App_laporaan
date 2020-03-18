@@ -37,29 +37,30 @@
                             </thead>
                             <tbody>
                             @if (!empty($pemesanans))
-                                @foreach ($pemesanans as $hari)
+                                @foreach ($pemesanans as $pemesanan)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $hari->nomor }}</td>
-                                    <td>{{ $hari->alamat }}</td>
-                                    <td>{{ $hari->produk }}</td>
-                                    <td>{{ $hari->harga }}</td>
-                                    <td>{{ $hari->status}}</td>
-
+                                    <td>{{ $pemesanan->nomor }}</td>
+                                    <td>{{ $pemesanan->alamat }}</td>
+                                    <td>{{ $pemesanan->produk }}</td>
+                                    <td>{{ $pemesanan->harga }}</td>
+                                    <td>{{ $pemesanan->status}}</td>
                                     <td>
-                                <a href="{{route('harian.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
+                                <a href="{{route('pemesanan.edit', $pemesanan->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
-                                <a href="{{ url('pemesanan', [$hari->id]) }}" onclick="return confirm('hapus data?')" class="danger p-0" data-original-title="" title="">
+                                {{-- <a href="{{ url('pemesanan', [$hari->id]) }}" onclick="return confirm('hapus data?')" class="danger p-0" data-original-title="" title="">
+                                    <i class="fa fa-trash font-medium-3 mr-2"></i>
+                                </a> --}}
+                                <a href="javascript:void(0)" onclick="hapusData({{ $pemesanan->id }})" class="danger p-0" data-original-title="" title="">
                                     <i class="fa fa-trash font-medium-3 mr-2"></i>
                                 </a>
-
-                                {{-- <form id="harian-{{ $hari->id }}" action="{{ route('harian.destroy', $hari->id) }}" method="post" style="display:none;">
+                                <form id="pemesanan-{{ $pemesanan->id }}" action="{{ route('pemesanan.destroy', $pemesanan->id) }}" method="post" style="display:none;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id-{{ $hari->id }}" value="">
+                                    <input type="hidden" name="id-{{ $pemesanan->id }}" value="">
                                     <input type="submit" value="OK">
-                                </form> --}}
+                                </form>
                                       </tr>
                                 @endforeach
                                 @else
@@ -85,7 +86,7 @@
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#harians-"+id).submit();
+                $("#pemesanan-"+id).submit();
             }
         }
     </script>

@@ -6,7 +6,7 @@
 <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title">Data Pengajuan Anggaran</h1>
+                <h1 class="page-title">Data Produk</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href=""><i class="la la-home font-20"></i></a>
@@ -63,7 +63,7 @@
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Data Pengajuan Anggaran</div>
+                        <div class="ibox-title">Data Produk</div>
                     </div>
                    <div class="ibox-body">
                     @php
@@ -82,24 +82,23 @@
                             </thead>
                             <tbody>
                             @if (!empty($produks))
-                                @foreach ($produks as $hari)
+                                @foreach ($produks as $produk)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $hari->nama }}</td>
-                                    <td>{{ $hari->harga }}</td>
-                                    <td>{{ $hari->jumlah }}</td>
+                                    <td>{{ $produk->nama }}</td>
+                                    <td>{{ $produk->harga }}</td>
+                                    <td>{{ $produk->jumlah }}</td>
                                     <td>
-                                <a href="{{route('produk.edit', $hari->id)}}" class="success p-0" data-original-title="" title="">
+                                <a href="{{route('produk.edit', $produk->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
-                                <a href="javascript:void(0)" onclick="hapusData({{ $hari->id }})" class="danger p-0" data-original-title="" title="">
+                                <a href="javascript:void(0)" onclick="hapusData({{ $produk->id }})" class="danger p-0" data-original-title="" title="">
                                     <i class="fa fa-trash font-medium-3 mr-2"></i>
                                 </a>
-
-                                <form id="harian-{{ $hari->id }}" action="{{ route('produk.destroy', $hari->id) }}" method="post" style="display:none;">
+                                <form id="produk-{{ $produk->id }}" action="{{ route('produk.destroy', $produk->id) }}" method="post" style="display:none;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id-{{ $hari->id }}" value="">
+                                    <input type="hidden" name="id-{{ $produk->id }}" value="">
                                     <input type="submit" value="OK">
                                 </form>
                                       </tr>

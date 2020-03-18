@@ -6,7 +6,7 @@
 <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
-                <h1 class="page-title">Operasional Harian</h1>
+                <h1 class="page-title">Kelola Karyawan</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href=""><i class="la la-home font-20"></i></a>
@@ -16,50 +16,42 @@
             <div class="page-content fade-in-up">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Data Operasional Harian</div>
+                        <div class="ibox-title">Data Karyawan</div>
                     </div>
-                    <a style="margin:10px;" href="{{ route('harian.create') }}" class="btn btn-outline-success">Pengeluaran</a>
-                    <a style="" href="{{ route('harian.create') }}" class="btn btn-outline-success">Tambah Saldo</a>
-                    @foreach ($saldo as $item)
-                    <a style="margin:10px;"  class="btn btn-outline-info">Rp.{{ number_format($item->saldo) }}</a>
-                @endforeach
-                 
+                    <a style="margin:10px;" href="{{ route('karyawan.create') }}" class="btn btn-outline-success">Tambah Data</a>
                     <div class="ibox-body">
                     @php
                         $no = 1;
                     @endphp
-                        <table class="table table-striped table-bordered table-hover" id="{{ empty($harians) ? '':'table-dt' }}" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="{{ empty($karyawans) ? '':'table-dt' }}" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Penggunaan</th>
-                                    <th>Pengeluaran</th>
-                                    <th>Keterangan</th>
-                                    <th>Nota</th>
+                                    <th>Nik</th>
+                                    <th>Nama</th>
+                                    <th>Gaji</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (!empty($harians))
-                                @foreach ($harians as $harian)
+                            @if (!empty($karyawans))
+                                @foreach ($karyawans as $karyawan)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $harian->nama }}</td>
-                                    <td>{{number_format($harian->nilai) }}</td>
-                                    <td>{{ $harian->keterangan }}</td>
-                                    <td> <img width="100px;" src="{{ url('images', $harian['nota']) }}" /></td>
+                                    <td>{{ $karyawan->name }}</td>
+                                    <td>{{ $karyawan->email }}</td>
                                     <td>
-                                <a href="{{route('harian.edit', $harian->id)}}" class="success p-0" data-original-title="" title="">
+                                <a href="{{route('karyawan.edit', $karyawan->id)}}" class="success p-0" data-original-title="" title="">
                                     <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
-                                <a href="javascript:void(0)" onclick="hapusData({{ $harian->id }})" class="danger p-0" data-original-title="" title="">
+                                <a href="javascript:void(0)" onclick="hapusData({{ $karyawan->id }})" class="danger p-0" data-original-title="" title="">
                                     <i class="fa fa-trash font-medium-3 mr-2"></i>
                                 </a>
 
-                                <form id="harian-{{ $harian->id }}" action="{{ route('harian.destroy', $harian->id) }}" method="post" style="display:none;">
+                                <form id="karyawan-{{ $karyawan->id }}" action="{{ route('karyawan.destroy', $karyawan->id) }}" method="post" style="display:none;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id-{{ $harian->id }}" value="">
+                                    <input type="hidden" name="id-{{ $karyawan->id }}" value="">
                                     <input type="submit" value="OK">
                                 </form>
                                       </tr>
@@ -80,14 +72,14 @@
 
     @section('js')
     <script>
-        $("#menu-harian").addClass("active");
+        $("#menu-karyawan").addClass("active");
         $(function(){
             $("#table-dt").dataTable();
         });
         function hapusData(id){
             let y = confirm('Are you sure to delete ?');
             if(y==true){
-                $("#harian-"+id).submit();
+                $("#karyawan-"+id).submit();
             }
         }
     </script>
